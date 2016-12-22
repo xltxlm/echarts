@@ -1,0 +1,30 @@
+{
+  "name": "xltxlm/echarts",
+  "description": "项目介绍",
+  "authors": [
+    {
+      "name": "xltxlm",
+      "email": "xltxlm@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "xltxlm/scrutinizer": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "xltxlm\\echarts\\": [
+        "src/"
+      ]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "xltxlm\\echarts\\": [
+        "./"
+      ]
+    }
+  }
+}
