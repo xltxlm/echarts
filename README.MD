@@ -6,4 +6,4 @@ https://packagist.org/packages/daixianceng/yii2-echarts
 #安装
 
 #用法
-
+阅读test的案例
