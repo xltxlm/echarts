@@ -81,4 +81,16 @@ class EchartsListTest extends TestCase
         $this->assertEquals(count($echartsList->getDates()), count(json_decode($echartsList->getNamesDataJson('夏琳泰'), true)));
         $this->assertEquals(count($echartsList->getDates()), count(json_decode($echartsList->getNamesDataJson('测试'), true)));
     }
+
+    public function test2()
+    {
+        $echartsList = new EchartsList($this->datas);
+        $echartsList->__invoke();
+        $this->assertGreaterThan(1, count($echartsList->getNames()));
+        $this->assertGreaterThan(1, strlen($echartsList->getNamesDataJson('夏琳泰')));
+        $this->assertGreaterThan(1, count($echartsList->getDates()));
+        $this->assertEquals(count($echartsList->getDates()), count(json_decode($echartsList->getNamesDataJson('夏琳泰'), true)));
+        $this->assertEquals(count($echartsList->getDates()), count(json_decode($echartsList->getNamesDataJson('测试'), true)));
+    }
+
 }
