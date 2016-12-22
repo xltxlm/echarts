@@ -22,6 +22,19 @@ final class EchartsList
     protected $echarts = [];
 
     /**
+     * 根据获取的数据直接初始化, 数据格式必须存在3个索引 ['name'=> , 'num'=>'' ,'date'=>'']
+     * EchartsList constructor.
+     * @param array $datas
+     */
+    public function __construct(array $datas = [])
+    {
+        foreach ($datas as $data) {
+            $this->setEcharts((new Echarts($data)));
+        }
+    }
+
+
+    /**
      * @return string
      */
     public function getNamesJson(): string
