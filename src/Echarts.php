@@ -8,7 +8,7 @@ use xltxlm\helper\Hclass\LoadFromArray;
  * 图标展示
  * Class Echarts.
  */
-final class Echarts
+class Echarts
 {
     use LoadFromArray;
     /** @var string 姓名 */
@@ -51,7 +51,7 @@ final class Echarts
      *
      * @return Echarts
      */
-    public function setDate(string $date): Echarts
+    public function setDate(string $date)
     {
         $this->date = $date;
 
@@ -71,7 +71,7 @@ final class Echarts
      *
      * @return Echarts
      */
-    public function setNum(string $num): Echarts
+    public function setNum(string $num)
     {
         $this->num = $num;
 

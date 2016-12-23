@@ -24,15 +24,20 @@ final class EchartsList
     /**
      * 根据获取的数据直接初始化, 数据格式必须存在3个索引 ['name'=> , 'num'=>'' ,'date'=>'']
      * EchartsList constructor.
+     *
      * @param array $datas
      */
     public function __construct(array $datas = [])
     {
         foreach ($datas as $data) {
-            $this->setEcharts((new Echarts($data)));
+            //如果是对象,默认传递进来的是符合  username,num,date 的实例
+            if (is_object($data)) {
+                $this->setEcharts($data);
+            } else {
+                $this->setEcharts((new Echarts($data)));
+            }
         }
     }
-
 
     /**
      * @return string
@@ -113,17 +118,21 @@ final class EchartsList
     }
 
     /**
-     * @param Echarts $echarts
+     * @param Echarts|mixed $echarts
      *
      * @return EchartsList
      */
-    public function setEcharts(Echarts $echarts): EchartsList
+    public function setEcharts($echarts): EchartsList
     {
         $this->echarts[] = $echarts;
 
         return $this;
     }
 
+    /**
+     * 重新格式化数据格式
+     * @return $this
+     */
     public function __invoke()
     {
         usort($this->echarts, [$this, 'usort']);
@@ -150,6 +159,7 @@ final class EchartsList
             }
         }
         unset($this->echarts);
+        return $this;
     }
 
     /**
@@ -158,7 +168,7 @@ final class EchartsList
      *
      * @return int
      */
-    private function usort(Echarts $a, Echarts $b)
+    private function usort($a,$b)
     {
         return $a->getDate() <=> $b->getDate();
     }
