@@ -2,11 +2,13 @@
 
 namespace xltxlm\echarts;
 
+use xltxlm\template\Template;
+
 /**
  * 配合Echarts图标,格式化数据
  * Class EchartsList.
  */
-final class EchartsList
+final class EchartsList extends Template
 {
     /** @var array 所有的统计名 */
     protected $names = [];
@@ -130,10 +132,11 @@ final class EchartsList
     }
 
     /**
-     * 重新格式化数据格式
+     * 重新格式化数据格式.
+     *
      * @return $this
      */
-    public function __invoke()
+    protected function make()
     {
         usort($this->echarts, [$this, 'usort']);
 
@@ -159,6 +162,7 @@ final class EchartsList
             }
         }
         unset($this->echarts);
+
         return $this;
     }
 
@@ -168,7 +172,7 @@ final class EchartsList
      *
      * @return int
      */
-    private function usort($a,$b)
+    private function usort($a, $b)
     {
         return $a->getDate() <=> $b->getDate();
     }
