@@ -1,9 +1,9 @@
-<?php /** @var \xltxlm\echarts\EchartsList $this */?>
+<?php /** @var \xltxlm\echarts\EchartsList $this */ ?>
 <!-- page script -->
 <script>
     $(function () {
         option = {
-            tooltip : {
+            tooltip: {
                 trigger: 'axis'
             },
             legend: {
@@ -20,32 +20,33 @@
                 bottom: '3%',
                 containLabel: true
             },
-            xAxis : [
+            xAxis: [
                 {
-                    type : 'category',
-                    boundaryGap : false,
-                    data : <?=$this->getDatesJson()?>
+                    type: 'category',
+                    boundaryGap: false,
+                    data: <?=$this->getDatesJson()?>
                 }
             ],
-            yAxis : [
+            yAxis: [
                 {
-                    type : 'value'
+                    type: 'value'
                 }
             ],
-            series : [
-                <?php foreach ($this->getNames() as $k=>$item){?>
+            series: [
+                <?php foreach ($this->getNamesData() as $k=>$item){ ?>
                 {
-                    name:'<?=$item?>',
-                    type:'line',
+                    name: '<?=$k?>',
+                    type: 'line',
                     stack: '总量',
                     areaStyle: {normal: {}},
-                    data:[120, 132, 101, 134, 90, 230, 210]
-                }<?=count($this->getNames())>$k+1?',':''?>
+                    data:<?=json_encode(array_values($item), JSON_UNESCAPED_UNICODE)?>
+
+                }<?=count($this->getNames()) > $k + 1 ? ',' : ''?>
                 <?php }?>
             ]
         };
         // 使用刚指定的配置项和数据显示图表。
-        var myChart = echarts.init(document.getElementById('areaChart'));
+        var myChart = echarts.init(document.getElementById('<?=$this->getDivid()?>'));
         myChart.setOption(option);
     });
 </script>

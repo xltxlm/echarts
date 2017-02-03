@@ -22,6 +22,27 @@ final class EchartsList extends Template
     protected $namesData = [];
     /** @var Echarts[] Echarts */
     protected $echarts = [];
+    /** @var string 图标所画的位置 */
+    protected $divid = 'areaChart';
+
+    /**
+     * @return string
+     */
+    public function getDivid(): string
+    {
+        return $this->divid;
+    }
+
+    /**
+     * @param string $divid
+     * @return EchartsList
+     */
+    public function setDivid(string $divid): EchartsList
+    {
+        $this->divid = $divid;
+        return $this;
+    }
+
 
     /**
      * 根据获取的数据直接初始化, 数据格式必须存在3个索引 ['name'=> , 'num'=>'' ,'date'=>'']
@@ -102,6 +123,14 @@ final class EchartsList extends Template
     /**
      * @return array
      */
+    public function getNamesData(): array
+    {
+        return $this->namesData;
+    }
+
+    /**
+     * @return array
+     */
     public function getDates(): array
     {
         return $this->dates;
@@ -138,7 +167,9 @@ final class EchartsList extends Template
      */
     public function make()
     {
-        usort($this->echarts, [$this, 'usort']);
+        usort($this->echarts, function (Echarts $a, Echarts $b) {
+            return $a->getDate() <=> $b->getDate();
+        });
 
         $namesDates = [];
         //计算出横轴的日期
@@ -157,23 +188,12 @@ final class EchartsList extends Template
             foreach ($this->dates as $date) {
                 /** @var Echarts $var */
                 $var = $namesDates[$name][$date];
-                $num = $var ? $var->getNum() : 0;
+                $num = $var->getNum() ?: 0;
                 $this->namesData[$name][$date] = $num;
             }
         }
         unset($this->echarts);
 
         return $this;
-    }
-
-    /**
-     * @param Echarts $a
-     * @param Echarts $b
-     *
-     * @return int
-     */
-    private function usort($a, $b)
-    {
-        return $a->getDate() <=> $b->getDate();
     }
 }
