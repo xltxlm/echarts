@@ -74,7 +74,9 @@ class EchartsListTest extends TestCase
             $echartsList
                 ->setEcharts((new Echarts($data)));
         }
-        $echartsList->__invoke();
+        $echartsList
+            ->make()
+            ->__invoke();
         $this->assertGreaterThan(1, count($echartsList->getNames()));
         $this->assertGreaterThan(1, strlen($echartsList->getNamesDataJson('夏琳泰')));
         $this->assertGreaterThan(1, count($echartsList->getDates()));
@@ -85,7 +87,9 @@ class EchartsListTest extends TestCase
     public function test2()
     {
         $echartsList = new EchartsList($this->datas);
-        $echartsList->__invoke();
+        $echartsList
+            ->make()
+            ->__invoke();
         $this->assertGreaterThan(1, count($echartsList->getNames()));
         $this->assertGreaterThan(1, strlen($echartsList->getNamesDataJson('夏琳泰')));
         $this->assertGreaterThan(1, count($echartsList->getDates()));

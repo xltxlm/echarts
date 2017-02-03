@@ -9,6 +9,7 @@
   ],
   "require": {
     "php": ">=7.0",
+    "xltxlm/template": "*",
     "xltxlm/helper": "*"
   },
   "require-dev": {

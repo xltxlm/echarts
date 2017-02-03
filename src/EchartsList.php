@@ -136,7 +136,7 @@ final class EchartsList extends Template
      *
      * @return $this
      */
-    protected function make()
+    public function make()
     {
         usort($this->echarts, [$this, 'usort']);
 

@@ -1,3 +1,4 @@
+<?php /** @var \xltxlm\echarts\EchartsList $this */?>
 <!-- page script -->
 <script>
     $(function () {
@@ -6,7 +7,7 @@
                 trigger: 'axis'
             },
             legend: {
-                data: <?=$echartsList->getNamesJson()?>
+                data: <?=$this->getNamesJson()?>
             },
             toolbox: {
                 feature: {
@@ -23,7 +24,7 @@
                 {
                     type : 'category',
                     boundaryGap : false,
-                    data : <?=$echartsList->getDatesJson()?>
+                    data : <?=$this->getDatesJson()?>
                 }
             ],
             yAxis : [
@@ -32,15 +33,15 @@
                 }
             ],
             series : [
-                <?php foreach ($echartsList->getNames() as $k=>$item){?>
+                <?php foreach ($this->getNames() as $k=>$item){?>
                 {
                     name:'<?=$item?>',
                     type:'line',
                     stack: '总量',
                     areaStyle: {normal: {}},
                     data:[120, 132, 101, 134, 90, 230, 210]
-                }<?=count($echartsList->getNames())>$k+1?',':''?>
-                <?}?>
+                }<?=count($this->getNames())>$k+1?',':''?>
+                <?php }?>
             ]
         };
         // 使用刚指定的配置项和数据显示图表。
