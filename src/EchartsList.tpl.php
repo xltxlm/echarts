@@ -38,7 +38,6 @@
                     name: '<?=$k?>',
                     type: 'line',
                     stack: '总量',
-                    areaStyle: {normal: {}},
                     data:<?=json_encode(array_values($item), JSON_UNESCAPED_UNICODE)?>
 
                 }<?=count($this->getNames()) > $k + 1 ? ',' : ''?>
