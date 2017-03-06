@@ -12,20 +12,10 @@
     "xltxlm/template": "*",
     "xltxlm/helper": "*"
   },
-  "require-dev": {
-    "xltxlm/scrutinizer": "*"
-  },
   "autoload": {
     "psr-4": {
       "xltxlm\\echarts\\": [
         "src/"
-      ]
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "xltxlm\\echarts\\": [
-        "./"
       ]
     }
   }
